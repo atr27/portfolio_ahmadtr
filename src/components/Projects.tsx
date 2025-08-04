@@ -9,36 +9,14 @@ const projects = [
   {
     id: 1,
     title: 'E-Commerce Platform',
-    description: 'A full-stack e-commerce solution built with React and Node.js, featuring real-time cart updates, secure payment processing.',
-    image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-    liveDemo: '#',
-    sourceCode: '#',
+    description: 'A full-stack e-commerce solution built with Next.js, React, and Supabase, featuring real-time cart updates, secure payment processing.',
+    image: 'https://ibb.co.com/bjqR1kB9',
+    technologies: ['React', 'Next.js', 'Supabase', 'Xendit'],
+    liveDemo: 'https://ecommerce-ahmadtaufikr.vercel.app/',
+    sourceCode: 'https://github.com/atr27/ecommerce_ahmadtr.git',
     icon: Smartphone,
     color: 'bg-blue-500'
   },
-  {
-    id: 2,
-    title: 'Task Management App',
-    description: 'A collaborative project management tool with real-time updates, team collaboration, and advanced task scheduling.',
-    image: 'https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=800',
-    technologies: ['React', 'Firebase', 'TypeScript', 'Tailwind'],
-    liveDemo: '#',
-    sourceCode: '#',
-    icon: BarChart3,
-    color: 'bg-purple-500'
-  },
-  {
-    id: 3,
-    title: 'Weather Dashboard',
-    description: 'An interactive weather application with location-based forecasts, historical data visualization and responsive design.',
-    image: 'https://images.pexels.com/photos/1431822/pexels-photo-1431822.jpeg?auto=compress&cs=tinysrgb&w=800',
-    technologies: ['React', 'Chart.js', 'OpenWeather API', 'PWA'],
-    liveDemo: '#',
-    sourceCode: '#',
-    icon: Cloud,
-    color: 'bg-green-500'
-  }
 ]
 
 export function Projects() {
