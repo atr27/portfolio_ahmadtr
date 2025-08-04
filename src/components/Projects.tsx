@@ -30,80 +30,91 @@ export function Projects() {
           <div className="w-20 h-1 bg-teal-600 mx-auto"></div>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => {
-            const Icon = project.icon
-            return (
-              <Card
-                key={project.id}
-                className={cn(
-                  'group cursor-pointer border-2 hover:border-teal-600 transition-all duration-300 overflow-hidden',
-                  'hover:shadow-xl hover:-translate-y-2 animate-in slide-in-from-bottom',
-                  `animation-delay-${index * 200}`
-                )}
-                onMouseEnter={() => setHoveredProject(project.id)}
-                onMouseLeave={() => setHoveredProject(null)}
-              >
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
-                  />
-                  <div className={cn(
-                    'absolute top-4 left-4 w-12 h-12 rounded-full flex items-center justify-center text-white transition-all duration-300',
-                    project.color,
-                    hoveredProject === project.id ? 'scale-110' : ''
-                  )}>
-                    <Icon className="h-6 w-6" />
-                  </div>
-                  <div className={cn(
-                    'absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300 flex items-center justify-center space-x-4',
-                    hoveredProject === project.id ? 'opacity-100' : ''
-                  )}>
-                    <Button size="sm" variant="secondary" asChild>
-                      <a href={project.liveDemo} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        Live Demo
-                      </a>
-                    </Button>
-                    <Button size="sm" variant="secondary" asChild>
-                      <a href={project.sourceCode} target="_blank" rel="noopener noreferrer">
-                        <Github className="h-4 w-4 mr-2" />
-                        Code
-                      </a>
-                    </Button>
-                  </div>
-                </div>
-                
-                <CardHeader>
-                  <CardTitle className="text-xl group-hover:text-teal-600 transition-colors">
-                    {project.title}
-                  </CardTitle>
-                </CardHeader>
-                
-                <CardContent className="space-y-4">
-                  <p className="text-muted-foreground leading-relaxed">
-                    {project.description}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => (
-                      <Badge 
-                        key={tech} 
-                        variant="secondary"
-                        className="bg-teal-50 text-teal-700 dark:bg-teal-900/20 dark:text-teal-300"
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            )
-          })}
-        </div>
+        {/* Center single project when there's only one */}
+        {projects.length === 1 ? (
+          <div className="flex justify-center">
+            <div className="w-full max-w-md">
+              {renderProject(projects[0], 0)}
+            </div>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => renderProject(project, index))}
+          </div>
+        )}
       </div>
     </section>
   )
+
+  function renderProject(project: typeof projects[0], index: number) {
+    const Icon = project.icon
+    return (
+      <Card
+        key={project.id}
+        className={cn(
+          'group cursor-pointer border-2 hover:border-teal-600 transition-all duration-300 overflow-hidden',
+          'hover:shadow-xl hover:-translate-y-2 animate-in slide-in-from-bottom',
+          `animation-delay-${index * 200}`
+        )}
+        onMouseEnter={() => setHoveredProject(project.id)}
+        onMouseLeave={() => setHoveredProject(null)}
+      >
+        <div className="relative overflow-hidden">
+          <img 
+            src={project.image}
+            alt={project.title}
+            className="w-full h-48 object-contain object-center transition-transform duration-300 group-hover:scale-110"
+          />
+          <div className={cn(
+            'absolute top-4 left-4 w-12 h-12 rounded-full flex items-center justify-center text-white transition-all duration-300',
+            project.color,
+            hoveredProject === project.id ? 'scale-110' : ''
+          )}>
+            <Icon className="h-6 w-6" />
+          </div>
+          <div className={cn(
+            'absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300 flex items-center justify-center space-x-4',
+            hoveredProject === project.id ? 'opacity-100' : ''
+          )}>
+            <Button size="sm" variant="secondary" asChild>
+              <a href={project.liveDemo} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="h-4 w-4 mr-2" />
+                Live Demo
+              </a>
+            </Button>
+            <Button size="sm" variant="secondary" asChild>
+              <a href={project.sourceCode} target="_blank" rel="noopener noreferrer">
+                <Github className="h-4 w-4 mr-2" />
+                Code
+              </a>
+            </Button>
+          </div>
+        </div>
+        
+        <CardHeader>
+          <CardTitle className="text-xl group-hover:text-teal-600 transition-colors">
+            {project.title}
+          </CardTitle>
+        </CardHeader>
+        
+        <CardContent className="space-y-4">
+          <p className="text-muted-foreground leading-relaxed">
+            {project.description}
+          </p>
+          
+          <div className="flex flex-wrap gap-2">
+            {project.technologies.map((tech) => (
+              <Badge 
+                key={tech} 
+                variant="secondary"
+                className="bg-teal-50 text-teal-700 dark:bg-teal-900/20 dark:text-teal-300"
+              >
+                {tech}
+              </Badge>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    )
+  }
 }
