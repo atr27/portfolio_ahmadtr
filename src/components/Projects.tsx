@@ -10,7 +10,7 @@ const projects = [
     id: 1,
     title: 'E-Commerce Platform',
     description: 'A full-stack e-commerce solution built with Next.js, React, and Supabase, featuring real-time cart updates, secure payment processing.',
-    image: 'https://ibb.co.com/bjqR1kB9',
+    image: 'https://iili.io/F6g0c3F.md.png',
     technologies: ['React', 'Next.js', 'Supabase', 'Xendit'],
     liveDemo: 'https://ecommerce-ahmadtaufikr.vercel.app/',
     sourceCode: 'https://github.com/atr27/ecommerce_ahmadtr.git',
@@ -61,13 +61,17 @@ export function Projects() {
                     'absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300 flex items-center justify-center space-x-4',
                     hoveredProject === project.id ? 'opacity-100' : ''
                   )}>
-                    <Button size="sm" variant="secondary">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Live Demo
+                    <Button size="sm" variant="secondary" asChild>
+                      <a href={project.liveDemo} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Live Demo
+                      </a>
                     </Button>
-                    <Button size="sm" variant="secondary">
-                      <Github className="h-4 w-4 mr-2" />
-                      Code
+                    <Button size="sm" variant="secondary" asChild>
+                      <a href={project.sourceCode} target="_blank" rel="noopener noreferrer">
+                        <Github className="h-4 w-4 mr-2" />
+                        Code
+                      </a>
                     </Button>
                   </div>
                 </div>
