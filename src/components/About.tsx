@@ -44,7 +44,7 @@ export function About() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <a href="https://drive.google.com/file/d/15PzYMs4unKlwvXhQoguROkwBPVOyAE9w/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                  <a href="https://drive.google.com/file/d/1EK2LKmNx73768idrd0ycOXkN_6oSyZr7/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                     <Button className="bg-teal-600 hover:bg-teal-700 text-white">
                       <Download className="mr-2 h-4 w-4" />
                       Download CV
