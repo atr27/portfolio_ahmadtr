@@ -63,7 +63,7 @@ export function Projects() {
           <img 
             src={project.image}
             alt={project.title}
-            className="w-full h-48 object-contain object-center transition-transform duration-300 group-hover:scale-110"
+            className="w-full h-48 object-cover object-center transition-transform duration-300 group-hover:scale-110"
           />
           <div className={cn(
             'absolute top-4 left-4 w-12 h-12 rounded-full flex items-center justify-center text-white transition-all duration-300',
