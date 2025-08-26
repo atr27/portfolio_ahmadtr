@@ -10,7 +10,7 @@ const projects = [
     id: 1,
     title: 'E-Commerce Platform',
     description: 'A full-stack e-commerce solution built with Next.js, React, and Supabase, featuring real-time cart updates, secure payment processing.',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    image: 'https://i.postimg.cc/8swz9TvS/project1.png',
     technologies: ['React', 'Next.js', 'Supabase', 'Xendit'],
     liveDemo: 'https://ecommerce-ahmadtaufikr.vercel.app/',
     sourceCode: 'https://github.com/atr27/ecommerce_ahmadtr.git',
