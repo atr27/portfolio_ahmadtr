@@ -10,7 +10,7 @@ const projects = [
     id: 1,
     title: 'E-Commerce Platform',
     description: 'A full-stack e-commerce solution built with Next.js, React, and Supabase, featuring real-time cart updates, secure payment processing.',
-    image: 'https://postimg.cc/8swz9TvS',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     technologies: ['React', 'Next.js', 'Supabase', 'Xendit'],
     liveDemo: 'https://ecommerce-ahmadtaufikr.vercel.app/',
     sourceCode: 'https://github.com/atr27/ecommerce_ahmadtr.git',
@@ -63,7 +63,11 @@ export function Projects() {
           <img 
             src={project.image}
             alt={project.title}
-            className="w-full h-48 object-cover object-center transition-transform duration-300 group-hover:scale-110"
+            className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = 'https://via.placeholder.com/400x300/0f172a/ffffff?text=E-Commerce+Platform';
+            }}
           />
           <div className={cn(
             'absolute top-4 left-4 w-12 h-12 rounded-full flex items-center justify-center text-white transition-all duration-300',
