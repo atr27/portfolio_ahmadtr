@@ -17,6 +17,17 @@ const projects = [
     icon: Smartphone,
     color: 'bg-blue-500'
   },
+  {
+    id: 1,
+    title: 'Point Of Sale Platform',
+    description: 'A full-stack cashier built with React, Chakra UI and Supabase.',
+    image: 'https://i.postimg.cc/RqTqVHBt/Project2.png',
+    technologies: ['React', 'Chakra UI', 'Supabase'],
+    liveDemo: 'https://cashier-ahmadtr.vercel.app/',
+    sourceCode: 'https://github.com/atr27/cashier-ahmadtr.git',
+    icon: Smartphone,
+    color: 'bg-blue-500'
+  }
 ]
 
 export function Projects() {
