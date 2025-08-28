@@ -18,7 +18,7 @@ const projects = [
     color: 'bg-blue-500'
   },
   {
-    id: 1,
+    id: 2,
     title: 'Point Of Sale Platform',
     description: 'A full-stack cashier built with React, Chakra UI and Supabase.',
     image: 'https://i.postimg.cc/RqTqVHBt/Project2.png',
@@ -26,7 +26,7 @@ const projects = [
     liveDemo: 'https://cashier-ahmadtr.vercel.app/',
     sourceCode: 'https://github.com/atr27/cashier-ahmadtr.git',
     icon: Smartphone,
-    color: 'bg-blue-500'
+    color: 'bg-green-500'
   }
 ]
 
@@ -41,18 +41,9 @@ export function Projects() {
           <div className="w-20 h-1 bg-teal-600 mx-auto"></div>
         </div>
         
-        {/* Center single project when there's only one */}
-        {projects.length === 1 ? (
-          <div className="flex justify-center">
-            <div className="w-full max-w-md">
-              {renderProject(projects[0], 0)}
-            </div>
-          </div>
-        ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => renderProject(project, index))}
-          </div>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {projects.map((project, index) => renderProject(project, index))}
+        </div>
       </div>
     </section>
   )
@@ -63,7 +54,7 @@ export function Projects() {
       <Card
         key={project.id}
         className={cn(
-          'group cursor-pointer border-2 hover:border-teal-600 transition-all duration-300 overflow-hidden',
+          'group cursor-pointer border-2 hover:border-teal-600 transition-all duration-300 overflow-hidden h-full flex flex-col',
           'hover:shadow-xl hover:-translate-y-2 animate-in slide-in-from-bottom',
           `animation-delay-${index * 200}`
         )}
@@ -112,12 +103,12 @@ export function Projects() {
           </CardTitle>
         </CardHeader>
         
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 flex-1 flex flex-col justify-between">
           <p className="text-muted-foreground leading-relaxed">
             {project.description}
           </p>
           
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 mt-auto">
             {project.technologies.map((tech) => (
               <Badge 
                 key={tech} 
