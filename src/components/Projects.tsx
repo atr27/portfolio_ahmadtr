@@ -25,9 +25,9 @@ const projects = [
   {
     id: 2,
     title: 'Point Of Sale Platform',
-    description: 'A full-stack cashier application built with React and Chakra UI, powered by Supabase for real-time data management and seamless transaction processing.',
+    description: 'A full-stack cashier application built with Next.js, powered by Neon Database for real-time data management and seamless transaction processing.',
     image: Project2,
-    technologies: ['React', 'Chakra UI', 'Supabase'],
+    technologies: ['React', 'Next.js', 'Neon', 'Xendit'],
     liveDemo: 'https://tokoku-ahmadtr.vercel.app/',
     sourceCode: 'https://github.com/atr27/tokoku-ahmadtr.git',
     icon: Smartphone,
