@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog'
+import { Dialog, DialogContent } from '@/components/ui/dialog'
 import { ExternalLink, Github, Smartphone, Eye } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Project1 from '@/assets/Project1.JPG'
@@ -51,24 +51,11 @@ const projects = [
 export function Projects() {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null)
   const [previewProject, setPreviewProject] = useState<typeof projects[0] | null>(null)
-  const [iframeError, setIframeError] = useState(false)
-
-  // Detect iframe loading issues (CSP violations don't trigger onError)
-  useEffect(() => {
-    if (previewProject) {
-      setIframeError(false)
-      // Set a shorter timeout to show fallback if iframe doesn't load
-      const timer = setTimeout(() => {
-        setIframeError(true)
-      }, 1500) // Reduced to 1.5 seconds for faster feedback
-      return () => clearTimeout(timer)
-    }
-  }, [previewProject])
 
   return (
     <>
       {/* Live Preview Dialog */}
-      <Dialog open={!!previewProject} onOpenChange={() => { setPreviewProject(null); setIframeError(false); }}>
+      <Dialog open={!!previewProject} onOpenChange={() => setPreviewProject(null)}>
         <DialogContent 
           className="max-w-7xl w-[95vw] h-[90vh] p-0 border-2 border-purple-500/30 bg-background/95 backdrop-blur-xl overflow-hidden flex flex-col"
           style={{ 
@@ -76,12 +63,6 @@ export function Projects() {
             transition: 'none'
           }}
         >
-          <DialogTitle className="sr-only">
-            {previewProject?.title} - Live Preview
-          </DialogTitle>
-          <DialogDescription className="sr-only">
-            Live preview of {previewProject?.title}. {iframeError ? 'Preview unavailable due to security restrictions. Use the button to open in a new tab.' : 'Interactive preview of the project.'}
-          </DialogDescription>
           {previewProject && (
             <>
               <div className="flex-1 flex flex-col overflow-hidden p-4 gap-4">
@@ -92,52 +73,18 @@ export function Projects() {
                     `bg-gradient-to-r ${previewProject.gradient}`
                   )}></div>
                   <div className="relative w-full h-full rounded-xl overflow-hidden border-2 border-purple-500/20 bg-muted shadow-2xl">
-                    {iframeError ? (
-                      <div className="w-full h-full flex flex-col items-center justify-center gap-6 p-8 text-center">
-                        <div className={cn(
-                          'w-20 h-20 rounded-full flex items-center justify-center',
-                          `bg-gradient-to-br ${previewProject.gradient}`
-                        )}>
-                          <ExternalLink className="w-10 h-10 text-white" />
-                        </div>
-                        <div className="space-y-3">
-                          <h3 className="text-2xl font-bold">Preview Not Available</h3>
-                          <p className="text-muted-foreground max-w-md">
-                            This site cannot be displayed in an iframe due to security restrictions. 
-                            Please click the button below to open it in a new tab.
-                          </p>
-                        </div>
-                        <Button
-                          asChild
-                          size="lg"
-                          className={cn(
-                            'shadow-lg hover:shadow-xl transition-all',
-                            `bg-gradient-to-r ${previewProject.gradient} hover:opacity-90 text-white border-0`
-                          )}
-                        >
-                          <a href={previewProject.liveDemo} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="mr-2 h-5 w-5" />
-                            Open Live Site
-                          </a>
-                        </Button>
-                      </div>
-                    ) : (
-                      <iframe
-                        src={previewProject.liveDemo}
-                        className="w-full h-full"
-                        title={`${previewProject.title} Preview`}
-                        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
-                        loading="eager"
-                        onLoad={() => setIframeError(false)}
-                      />
-                    )}
+                    <iframe
+                      src={previewProject.liveDemo}
+                      className="w-full h-full"
+                      title={`${previewProject.title} Preview`}
+                      sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+                      loading="lazy"
+                    />
                   </div>
-                  {!iframeError && (
-                    <div className="absolute top-4 right-4 bg-black/80 backdrop-blur-sm px-3 py-2 rounded-full text-xs text-white flex items-center gap-2 shadow-lg z-10">
-                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                      Live Preview
-                    </div>
-                  )}
+                  <div className="absolute top-4 right-4 bg-black/80 backdrop-blur-sm px-3 py-2 rounded-full text-xs text-white flex items-center gap-2 shadow-lg z-10">
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    Live Preview
+                  </div>
                 </div>
 
                 {/* Bottom Section - Compact */}
