@@ -1,7 +1,5 @@
 import profileImage from '@/assets/profile.jpg';
 import { Card, CardContent } from '@/components/ui/card'
-import { Download } from 'lucide-react'
-import { Button } from '@/components/ui/button';
 
 export function About() {
   return (
@@ -47,11 +45,7 @@ export function About() {
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               
               <CardContent className="relative p-8 space-y-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-1 h-12 bg-gradient-to-b from-cyan-400 to-purple-500 rounded-full"></div>
-                  <Download className="w-6 h-6 text-cyan-400" />
-                </div>
-                
+    
                 <p className="text-lg leading-relaxed text-justify">
                   I'm a passionate <span className="font-semibold text-cyan-400">full-stack developer</span> with less than 1 year of experience developing web
                   and mobile applications. My journey began with a curiosity about how things work, which
