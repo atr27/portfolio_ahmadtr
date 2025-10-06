@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Dialog, DialogContent } from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog'
 import { ExternalLink, Github, Smartphone, Eye } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Project1 from '@/assets/Project1.JPG'
@@ -53,6 +53,18 @@ export function Projects() {
   const [previewProject, setPreviewProject] = useState<typeof projects[0] | null>(null)
   const [iframeError, setIframeError] = useState(false)
 
+  // Detect iframe loading issues (CSP violations don't trigger onError)
+  useEffect(() => {
+    if (previewProject) {
+      setIframeError(false)
+      // Set a timeout to show fallback if iframe doesn't load
+      const timer = setTimeout(() => {
+        setIframeError(true)
+      }, 3000)
+      return () => clearTimeout(timer)
+    }
+  }, [previewProject])
+
   return (
     <>
       {/* Live Preview Dialog */}
@@ -64,6 +76,12 @@ export function Projects() {
             transition: 'none'
           }}
         >
+          <DialogTitle className="sr-only">
+            {previewProject?.title} - Live Preview
+          </DialogTitle>
+          <DialogDescription className="sr-only">
+            Live preview of {previewProject?.title}. {iframeError ? 'Preview unavailable due to security restrictions. Use the button to open in a new tab.' : 'Interactive preview of the project.'}
+          </DialogDescription>
           {previewProject && (
             <>
               <div className="flex-1 flex flex-col overflow-hidden p-4 gap-4">
@@ -109,8 +127,8 @@ export function Projects() {
                         className="w-full h-full"
                         title={`${previewProject.title} Preview`}
                         sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
-                        loading="lazy"
-                        onError={() => setIframeError(true)}
+                        loading="eager"
+                        onLoad={() => setIframeError(false)}
                       />
                     )}
                   </div>
