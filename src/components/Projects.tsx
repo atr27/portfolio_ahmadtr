@@ -57,10 +57,10 @@ export function Projects() {
   useEffect(() => {
     if (previewProject) {
       setIframeError(false)
-      // Set a timeout to show fallback if iframe doesn't load
+      // Set a shorter timeout to show fallback if iframe doesn't load
       const timer = setTimeout(() => {
         setIframeError(true)
-      }, 3000)
+      }, 1500) // Reduced to 1.5 seconds for faster feedback
       return () => clearTimeout(timer)
     }
   }, [previewProject])
