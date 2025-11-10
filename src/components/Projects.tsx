@@ -105,28 +105,8 @@ export function Projects() {
           <div className="w-20 h-1 bg-gradient-to-r from-purple-400 to-cyan-400 mx-auto rounded-full"></div>
         </div>
         
-        {/* Next.js Projects Section */}
-        <div className="max-w-6xl mx-auto mb-20">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
-            <div className="flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-400/10 to-blue-500/10 border border-cyan-400/20">
-              <div className="w-3 h-3 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 animate-pulse"></div>
-              <h3 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Next.js Stack
-              </h3>
-              <Badge variant="secondary" className="bg-cyan-400/20 text-cyan-400 border-cyan-400/30">
-                {nextJsProjects.length}
-              </Badge>
-            </div>
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
-          </div>
-          <div className="space-y-8">
-            {nextJsProjects.map((project, index) => renderProject(project, index))}
-          </div>
-        </div>
-
         {/* Laravel Projects Section */}
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto mb-20">
           <div className="flex items-center gap-4 mb-8">
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-red-400 to-transparent"></div>
             <div className="flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-red-400/10 to-purple-500/10 border border-red-400/20">
@@ -142,6 +122,26 @@ export function Projects() {
           </div>
           <div className="space-y-8">
             {laravelProjects.map((project, index) => renderProject(project, index))}
+          </div>
+        </div>
+
+        {/* Next.js Projects Section */}
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+            <div className="flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-400/10 to-blue-500/10 border border-cyan-400/20">
+              <div className="w-3 h-3 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 animate-pulse"></div>
+              <h3 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                Next.js Stack
+              </h3>
+              <Badge variant="secondary" className="bg-cyan-400/20 text-cyan-400 border-cyan-400/30">
+                {nextJsProjects.length}
+              </Badge>
+            </div>
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+          </div>
+          <div className="space-y-8">
+            {nextJsProjects.map((project, index) => renderProject(project, index))}
           </div>
         </div>
       </div>
