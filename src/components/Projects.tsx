@@ -7,8 +7,11 @@ import { cn } from '@/lib/utils'
 import Project1 from '@/assets/Project1.JPG'
 import Project2 from '@/assets/Project2.JPG'
 import Project3 from '@/assets/Project3.JPG'
+import Project4 from '@/assets/Project4.png'
+import Project5 from '@/assets/Project5.png'
+import Project6 from '@/assets/Project6.png'
 
-const projects = [
+const nextJsProjects = [
   {
     id: 1,
     title: 'E-Commerce Platform',
@@ -47,6 +50,42 @@ const projects = [
   }
 ]
 
+const laravelProjects = [
+  {
+    id: 4,
+    title: 'POS Inventory Management',
+    description: 'A full-stack cashier application built with Laravel, powered by MySQL Database for real-time data management and seamless transaction processing.',
+    image: Project4,
+    technologies: ['Laravel', 'JQuery', 'TailwindCSS', 'MySQL'],
+    liveDemo: 'https://pos-inventory.ahmadtaufikramdani.my.id/',
+    icon: Smartphone,
+    gradient: 'from-green-400 to-blue-500',
+    glowColor: 'glow-green'
+  },
+  {
+    id: 5,
+    title: 'Exam CPNS',
+    description: 'A comprehensive civil service exam preparation platform built with Laravel, featuring practice tests, score tracking, and real-time performance analytics powered by MySQL Database.',
+    image: Project5,
+    technologies: ['Laravel', 'JQuery', 'TailwindCSS', 'MySQL'],
+    liveDemo: 'http://cpns-exam.ahmadtaufikramdani.my.id/',
+    icon: Smartphone,
+    gradient: 'from-yellow-400 to-orange-500',
+    glowColor: 'glow-yellow'
+  },
+  {
+    id: 6,
+    title: 'Desa Digital',
+    description: 'A digital village management system built with Laravel, React, and Inertia.js, providing comprehensive solutions for village administration, citizen services, and community engagement.',
+    image: Project6,
+    technologies: ['Laravel', 'React', 'Inertia','MySQL','TailwindCSS'],
+    liveDemo: 'http://desa-digital.ahmadtaufikramdani.my.id/',
+    icon: Smartphone,
+    gradient: 'from-red-400 to-purple-500',
+    glowColor: 'glow-red'
+  }
+]
+
 export function Projects() {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null)
 
@@ -66,15 +105,50 @@ export function Projects() {
           <div className="w-20 h-1 bg-gradient-to-r from-purple-400 to-cyan-400 mx-auto rounded-full"></div>
         </div>
         
-        {/* Horizontal Card Layout */}
-        <div className="space-y-8 max-w-6xl mx-auto">
-          {projects.map((project, index) => renderProject(project, index))}
+        {/* Next.js Projects Section */}
+        <div className="max-w-6xl mx-auto mb-20">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+            <div className="flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-400/10 to-blue-500/10 border border-cyan-400/20">
+              <div className="w-3 h-3 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 animate-pulse"></div>
+              <h3 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                Next.js Stack
+              </h3>
+              <Badge variant="secondary" className="bg-cyan-400/20 text-cyan-400 border-cyan-400/30">
+                {nextJsProjects.length}
+              </Badge>
+            </div>
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+          </div>
+          <div className="space-y-8">
+            {nextJsProjects.map((project, index) => renderProject(project, index))}
+          </div>
+        </div>
+
+        {/* Laravel Projects Section */}
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-red-400 to-transparent"></div>
+            <div className="flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-red-400/10 to-purple-500/10 border border-red-400/20">
+              <div className="w-3 h-3 rounded-full bg-gradient-to-r from-red-400 to-purple-500 animate-pulse"></div>
+              <h3 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-red-400 to-purple-500 bg-clip-text text-transparent">
+                Laravel Stack
+              </h3>
+              <Badge variant="secondary" className="bg-red-400/20 text-red-400 border-red-400/30">
+                {laravelProjects.length}
+              </Badge>
+            </div>
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-red-400 to-transparent"></div>
+          </div>
+          <div className="space-y-8">
+            {laravelProjects.map((project, index) => renderProject(project, index))}
+          </div>
         </div>
       </div>
     </section>
   )
 
-  function renderProject(project: typeof projects[0], index: number) {
+  function renderProject(project: typeof nextJsProjects[0] | typeof laravelProjects[0], index: number) {
     const Icon = project.icon
     const isEven = index % 2 === 0
     
@@ -184,9 +258,10 @@ export function Projects() {
               <Button 
                 asChild
                 className={cn(
-                  'flex-1 transition-all duration-300',
+                  'transition-all duration-300',
                   `bg-gradient-to-r ${project.gradient}`,
-                  'text-white border-0 shadow-lg hover:shadow-xl hover:scale-105'
+                  'text-white border-0 shadow-lg hover:shadow-xl hover:scale-105',
+                  'sourceCode' in project ? 'flex-1' : 'w-full'
                 )}
               >
                 <a href={project.liveDemo} target="_blank" rel="noopener noreferrer">
@@ -194,16 +269,18 @@ export function Projects() {
                   Live Demo
                 </a>
               </Button>
-              <Button 
-                asChild
-                variant="outline"
-                className="flex-1 border-2 hover:scale-105 transition-all duration-300"
-              >
-                <a href={project.sourceCode} target="_blank" rel="noopener noreferrer">
-                  <Github className="h-4 w-4 mr-2" />
-                  Source Code
-                </a>
-              </Button>
+              {'sourceCode' in project && (
+                <Button 
+                  asChild
+                  variant="outline"
+                  className="flex-1 border-2 hover:scale-105 transition-all duration-300"
+                >
+                  <a href={project.sourceCode} target="_blank" rel="noopener noreferrer">
+                    <Github className="h-4 w-4 mr-2" />
+                    Source Code
+                  </a>
+                </Button>
+              )}
             </div>
           </CardContent>
         </div>
